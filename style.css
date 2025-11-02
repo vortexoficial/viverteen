@@ -584,6 +584,31 @@ section {
     color: #888;
 }
 
+/* --- NOVOS ESTILOS PARA WHATSAPP --- */
+.footer .whatsapp-link {
+    font-size: 1.1rem;
+    color: var(--color-gray);
+    font-weight: 700;
+    margin-bottom: 1rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+}
+.footer .whatsapp-link a {
+    color: var(--color-white); /* Link em branco */
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+.footer .whatsapp-link a:hover {
+    color: var(--color-primary); /* Amarelo no hover */
+}
+.footer .whatsapp-link i {
+    color: var(--color-primary); /* Ícone amarelo */
+    font-size: 1.3rem;
+}
+/* --- FIM DOS NOVOS ESTILOS --- */
+
 
 /* --- RESPONSIVO (Mobile) --- */
 @media (max-width: 768px) {
