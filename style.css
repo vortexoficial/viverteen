@@ -617,7 +617,7 @@ section {
     h3 { font-size: 1.8rem; }
 
     section {
-        padding: 4rem 0;
+        padding: 0rem 0;
     }
     
     #problema {
@@ -842,6 +842,7 @@ section {
     font-size: 4.5rem;
 }
 }
+
 
 
 
