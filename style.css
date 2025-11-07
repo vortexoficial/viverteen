@@ -797,7 +797,7 @@ section {
     .benefits {
         background-image: url('img/benefits-bg-mobile.jpg'); /* <-- CAMINHO IMAGEM RESTAURADO */
         /* Padding do Benefits mobile não é afetado pela mudança desktop */
-        padding: 2rem 0 4rem;
+        padding: 2rem 0 0rem;
     }
 
     .benefits .container {
@@ -982,4 +982,5 @@ section {
   .hero-headline {
     font-size: 4.5rem;
 }
+
 }
