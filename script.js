@@ -111,8 +111,6 @@ document.addEventListener('DOMContentLoaded', () => {
     // URL da sua API do Google
     const GOOGLE_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbxsdvMeqefKmvR_affcz73uwpX_S5rrzRQwXIqyJdpjThTVmtB9Z6I7-eDP9oMNYtpvVg/exec";
     
-    // <<<< MUDANÇA: A URL do WhatsApp foi removida daqui
-
     // Seleciona os elementos do formulário
     const form = document.getElementById('lead-form');
     const submitButton = document.getElementById('submit-button');
@@ -140,15 +138,13 @@ document.addEventListener('DOMContentLoaded', () => {
                 body: formData,
             });
 
-            // <<<<< MUDANÇA IMPORTANTE AQUI >>>>>
-
             // 1. Pega o nome direto do formulário
             const nome = formData.get('Nome');
             
-            // 2. Cria a nova mensagem personalizada
-            const baseMessage = `Olá, me nome é ${nome} e gostaria de ser avisado(a) sobre o próximo evento!`;
+            // 2. Cria a nova mensagem (corrigi o "me nome" para "meu nome")
+            const baseMessage = `Olá, meu nome é ${nome} e gostaria de ser avisado(a) sobre o próximo evento!`;
             
-            // 3. Codifica a mensagem para uma URL (corrige o "Olá%C")
+            // 3. Codifica a mensagem para uma URL
             const encodedMessage = encodeURIComponent(baseMessage);
             
             // 4. Monta a URL final e dinâmica
@@ -158,8 +154,9 @@ document.addEventListener('DOMContentLoaded', () => {
             form.reset();      // Limpa o formulário
             closeModal();      // Fecha o modal
             
-            // 5. Redireciona para a URL recém-criada
-            window.open(dynamicWhatsappUrl, '_blank');
+            // <<<<< MUDANÇA IMPORTANTE AQUI >>>>>
+            // 5. Redireciona a ABA ATUAL (não abre pop-up)
+            window.location.href = dynamicWhatsappUrl;
             
 
         } catch (error) {
@@ -167,7 +164,7 @@ document.addEventListener('DOMContentLoaded', () => {
             alert("Erro de conexão. Tente novamente.");
             console.error("Erro no fetch:", error);
         } finally {
-            // Restaura o botão
+            // Restaura o botão (embora o usuário já tenha sido redirecionado)
             submitButton.innerHTML = originalButtonText;
             submitButton.disabled = false;
         }
