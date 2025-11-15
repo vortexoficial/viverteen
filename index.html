@@ -41,10 +41,11 @@
                 <span><i class="ph-bold ph-clock"></i> 15h às 19h</span>
             </div>
             
-            <a href="https://www.sympla.com.br/evento/viver-teen---1511/3199934" class="cta-button" target="_blank"><i class="ph-bold ph-users-three"></i>
-               Quero garantir minha vaga
-            </a>
-        </div>
+            <button onclick="openModal()" class="cta-button">
+                <i class="ph-bold ph-users-three"></i>
+                Vagas Esgotadas - Avise-me!
+            </button>
+            </div>
     </header>
 
     <main>
@@ -173,13 +174,13 @@
                 <h2>Não Fique de Fora</h2>
                 <p>
                    As vagas são limitadas.<br>
-Garanta o seu lugar.
+Deixe seus dados para ser avisado(a) do próximo evento!
                 </p>
-                <a href="https://www.sympla.com.br/evento/viver-teen---1511/3199934" class="cta-button" target="_blank">
+                 <button onclick="openModal()" class="cta-button">
                     <i class="ph-bold ph-users-three"></i>
-                    Quero minha vaga agora
-                </a>
-            </div>
+                    Quero ser avisado(a)!
+                </button>
+                 </div>
         </section>
 
     </main>
@@ -192,7 +193,35 @@ Garanta o seu lugar.
             <p>© 2025 +Conexões. Todos os direitos reservados.</p>
         </div>
     </footer>
- <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+    
+    <div id="interest-modal" class="modal">
+        <div class="modal-content">
+            <span class="close-button" onclick="closeModal()">&times;</span>
+            
+            <i class="ph-fill ph-ticket modal-icon"></i>
+            <h2>Evento Esgotado!</h2>
+            <p>
+                Obrigado pelo seu interesse! O evento <b>+Conexões</b> esgotou as vagas. 
+                Deixe seus dados abaixo para <b>receber em primeira mão</b> informações sobre a próxima edição.
+            </p>
+
+            <form id="lead-form" class="interest-form">
+                
+                <input type="text" name="Nome" placeholder="Seu Nome Completo" required>
+                <input type="email" name="Email" placeholder="Seu Melhor E-mail" required>
+                <input type="tel" name="WhatsApp" placeholder="WhatsApp (DDD+Número)" required minlength="15">
+                
+                <button type="submit" class="cta-button" id="submit-button">
+                    <i class="ph-bold ph-paper-plane-tilt"></i>
+                    Quero ser avisado(a)!
+                </button>
+                <p class="form-note">
+                    Seus dados estão seguros.
+                </p>
+            </form>
+            </div>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
     
     <script src="script.js"></script>
   

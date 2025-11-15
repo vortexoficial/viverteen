@@ -524,155 +524,6 @@ section {
     to { transform: rotate(360deg); }
 }
 
-/* --- SEÇÃO PRODUTO (Fundo Preto + Imagem Restaurada) --- */
-.product {
-    background-color: var(--color-dark-gray); /* <-- Fundo Preto Sólido */
-    background-image: url('img/produtodesktop.jpg'); /* <-- CAMINHO IMAGEM RESTAURADO */
-    background-size: cover;
-    background-position: center;
-    background-repeat: no-repeat;
-}
-.product-layout {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 3rem;
-    align-items: center;
-}
-
-.product-image img {
-    border-radius: 8px;
-    visibility: hidden; /* <-- VERIFIQUE SE ESTA LINHA EXISTE */
-}
-
-.product-info h2 {
-    margin-bottom: 1rem;
-}
-.product-info h3 {
-    color: var(--color-white);
-    margin-bottom: 1rem;
-}
-.flavors {
-    display: flex;
-    gap: 1rem;
-    margin: 1.5rem 0;
-}
-.flavor {
-    font-family: var(--font-secondary);
-    font-size: 0.8rem;
-    font-weight: 700;
-    padding: 0.3rem 1rem;
-    border-radius: 20px;
-    text-transform: uppercase;
-}
-.flavor.primary {
-    background-color: var(--color-primary); /* <-- Amarelo */
-    color: var(--color-white);
-}
-.flavor.secondary {
-    background-color: var(--color-secondary); /* <-- Roxo Claro */
-    color: var(--color-white);
-}
-.product-info ul {
-    margin: 1.5rem 0;
-}
-.product-info li {
-    font-size: 1.1rem;
-    margin-bottom: 0.8rem;
-    display: flex;
-    align-items: center;
-    color: #c0c0c0;
-}
-.product-info li i {
-    font-size: 1.5rem;
-    color: var(--color-primary); /* <-- Amarelo */
-    margin-right: 0.75rem;
-}
-
-/* --- SEÇÃO KIT LANÇAMENTO (Fundo Roxo, Badge Roxo Claro) --- */
-.kit {
-    text-align: center;
-    background-color: var(--color-black); /* Fundo Roxo Escuro */
-}
-.kit-badge {
-    display: inline-block;
-    padding: 0.4rem 1.2rem;
-    background-color: var(--color-tertiary); /* <-- Roxo Claro */
-    color: var(--color-white);
-    font-family: var(--font-secondary);
-    font-size: 1.3rem;
-    border-radius: 5px;
-    margin-bottom: 1rem;
-}
-.kit h2 {
-    color: var(--color-white);
-    margin-bottom: 1rem;
-}
-.kit-content {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 3rem;
-    align-items: center;
-    text-align: left;
-    margin-top: 4rem;
-}
-.kit-image img {
-    border-radius: 8px;
-}
-
-.kit-image img {
-    border-radius: 8px;
-}
-
-/* --- ADICIONE ESTAS 4 LINHAS --- */
-.kit-image .img-mobile {
-    display: none; /* Escondido no desktop */
-}
-.kit-image .img-desktop {
-    display: block; /* Visível no desktop */
-}
-.kit-details h3 {
-    color: var(--color-white);
-    margin-bottom: 1.5rem;
-}
-.kit-details ul {
-    margin-bottom: 2rem;
-}
-.kit-details li {
-    font-size: 1.2rem;
-    margin-bottom: 1rem;
-    display: flex;
-    align-items: center;
-}
-.kit-details li i {
-    font-size: 1.8rem;
-    color: var(--color-primary); /* <-- Amarelo */
-    margin-right: 1rem;
-    min-width: 30px;
-}
-
-/* --- SEÇÃO PROVA SOCIAL (Fundo Preto, Borda Amarela) --- */
-.social-proof {
-    background-color: var(--color-dark-gray);
-    text-align: center;
-}
-.social-proof blockquote {
-    font-family: var(--font-secondary);
-    font-size: 2.5rem;
-    line-height: 1.4;
-    color: var(--color-white);
-    max-width: 800px;
-    margin: 0 auto 1.5rem auto;
-    border-left: 5px solid var(--color-primary); /* <-- Amarelo */
-    padding-left: 2rem;
-    text-align: left;
-}
-.social-proof span {
-    font-family: var(--font-secondary);
-    font-size: 1.5rem;
-    color: var(--color-primary); /* <-- Amarelo */
-    letter-spacing: 2px;
-}
-
 /* --- SEÇÃO CTA FINAL (Fundo Preto) --- */
 .final-cta {
     background-color: var(--color-dark-gray); /* <-- Fundo Preto Sólido */
@@ -726,6 +577,130 @@ section {
 /* --- FIM DOS NOVOS ESTILOS --- */
 
 
+/* --- ESTILOS DO MODAL/POPUP --- */
+
+/* Fundo do Modal */
+.modal {
+    display: none; /* Escondido por padrão */
+    position: fixed;
+    z-index: 1000; /* Acima de tudo */
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgba(0, 0, 0, 0.7); 
+    backdrop-filter: blur(5px);
+    -webkit-backdrop-filter: blur(5px);
+    justify-content: center; /* Centraliza horizontalmente (quando display:flex) */
+    align-items: center; /* Centraliza verticalmente (quando display:flex) */
+}
+
+/* Conteúdo/Caixa do Modal */
+.modal-content {
+    background-color: var(--color-black); /* Roxo Escuro */
+    margin: 10% auto; /* Centraliza verticalmente (desktop) - ajustado para 10% */
+    padding: 30px;
+    border-radius: 15px;
+    max-width: 450px;
+    position: relative;
+    box-shadow: 0 5px 20px rgba(252, 169, 3, 0.4); /* Sombra Amarela */
+    text-align: center;
+    border: 2px solid var(--color-primary);
+    animation: fadeInModal 0.3s ease-out;
+}
+
+/* Botão de Fechar */
+.close-button {
+    color: var(--color-primary); /* Amarelo */
+    float: right;
+    font-size: 30px;
+    font-weight: bold;
+    cursor: pointer;
+    line-height: 1;
+    position: absolute;
+    top: 10px;
+    right: 20px;
+    transition: color 0.2s;
+}
+
+.close-button:hover,
+.close-button:focus {
+    color: var(--color-white);
+    text-decoration: none;
+}
+
+.modal-content h2 {
+    color: var(--color-white);
+    font-size: 2rem;
+    margin-bottom: 10px;
+}
+
+.modal-content p {
+    color: #c0c0c0;
+    margin-bottom: 20px;
+}
+
+.modal-icon {
+    font-size: 3.5rem;
+    color: var(--color-primary); /* Amarelo */
+    margin-bottom: 10px;
+    display: block;
+}
+
+/* --- ESTILOS DO FORMULÁRIO INTERNO (INTEREST-FORM) --- */
+.interest-form input[type="text"],
+.interest-form input[type="email"],
+.interest-form input[type="tel"] {
+    width: 100%;
+    padding: 12px 15px;
+    margin-bottom: 15px;
+    border-radius: 8px;
+    border: 1px solid #4a0066; /* Borda Roxo Claro */
+    background-color: #5b007b; /* Fundo do input Roxo */
+    color: var(--color-white);
+    font-size: 1rem;
+    transition: border-color 0.3s, box-shadow 0.3s;
+}
+
+.interest-form input::placeholder {
+    color: #c0c0c0;
+    opacity: 0.7;
+}
+
+.interest-form input:focus {
+    border-color: var(--color-primary); /* Amarelo no foco */
+    outline: none;
+    box-shadow: 0 0 5px var(--color-primary-glow);
+}
+
+.interest-form .cta-button {
+    /* Reutiliza o estilo do botão CTA, mas garante 100% de largura */
+    width: 100%;
+    text-align: center;
+    margin-top: 5px;
+}
+
+.form-note {
+    font-size: 0.85rem;
+    color: #888;
+    margin-top: 15px;
+}
+
+/* Animação de entrada do Modal */
+@keyframes fadeInModal {
+    from {
+        opacity: 0;
+        transform: translateY(-50px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+/* --- FIM DOS ESTILOS DO MODAL/POPUP --- */
+
+
 /* --- RESPONSIVO (Mobile) --- */
 @media (max-width: 768px) {
     h1 { font-size: 2.8rem; }
@@ -738,6 +713,10 @@ section {
     
     #problema {
         padding: 0rem 0;
+    }
+
+    .final-cta {
+        padding-top: 4rem;
     }
 
     .container {
@@ -797,7 +776,7 @@ section {
     .benefits {
         background-image: url('img/benefits-bg-mobile.jpg'); /* <-- CAMINHO IMAGEM RESTAURADO */
         /* Padding do Benefits mobile não é afetado pela mudança desktop */
-        padding: 2rem 0 0rem;
+        padding: 2rem 0 4rem;
     }
 
     .benefits .container {
@@ -940,13 +919,6 @@ section {
                     margin-bottom: 2rem;
                 }
 
-                /* --- ADICIONE ESTAS 4 LINHAS AQUI --- */
-                .kit-image .img-mobile {
-                    display: block; /* Mostra no mobile */
-                }
-                .kit-image .img-desktop {
-                    display: none; /* Esconde no mobile */
-                }
 
     .social-proof blockquote {
         font-size: 1.8rem;
@@ -956,6 +928,13 @@ section {
     .event-info {
         justify-content: center;
         gap: 1rem;
+    }
+
+    /* Ajuste do Modal no Mobile */
+    .modal-content {
+        margin: 20% 10px;
+        padding: 20px;
+        max-width: 90%;
     }
 }
 
@@ -982,5 +961,4 @@ section {
   .hero-headline {
     font-size: 4.5rem;
 }
-
 }
