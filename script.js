@@ -73,9 +73,7 @@ window.addEventListener('load', () => {
 /* == SCRIPT PRINCIPAL (SWIPER, FORMULÁRIO, MÁSCARA) == */
 /* ======================================================== */
 
-// <<<<< CORREÇÃO IMPORTANTE >>>>>
-// Espera o HTML ser totalmente carregado antes de rodar 
-// os scripts que dependem de elementos da página
+// Espera o HTML ser totalmente carregado
 document.addEventListener('DOMContentLoaded', () => {
 
     /* --- 1. SCRIPT DO CARROSSEL (TIME) --- */
@@ -113,7 +111,10 @@ document.addEventListener('DOMContentLoaded', () => {
     // URL da sua API do Google
     const GOOGLE_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbxsdvMeqefKmvR_affcz73uwpX_S5rrzRQwXIqyJdpjThTVmtB9Z6I7-eDP9oMNYtpvVg/exec";
     
-    // Seleciona os elementos do formulário AQUI DE DENTRO
+    // URL do WhatsApp para redirecionar
+    const WHATSAPP_URL = "https://wa.me/5513988010886?text=Ol%C3%A1%2C%20quero%20ser%20avisado%20sobre%20o%20pr%C3%B3ximo%20evento%21";
+
+    // Seleciona os elementos do formulário
     const form = document.getElementById('lead-form');
     const submitButton = document.getElementById('submit-button');
 
@@ -135,22 +136,23 @@ document.addEventListener('DOMContentLoaded', () => {
 
         try {
             // Envia os dados para a API do Google
-            const response = await fetch(GOOGLE_SCRIPT_URL, {
+            await fetch(GOOGLE_SCRIPT_URL, {
                 method: 'POST',
                 body: formData,
             });
 
-            const result = await response.json();
-
-            if (result.status === "success") {
-                // Sucesso!
-                form.reset();      // Limpa o formulário
-                closeModal();      // Fecha o modal
-                window.open(result.redirect, '_blank'); // Abre o WhatsApp
-            } else {
-                // Erro reportado pelo Google Script
-                alert("Ocorreu um erro: " + result.message);
-            }
+            // <<<<< MUDANÇA IMPORTANTE AQUI >>>>>
+            // Se o 'fetch' acima não deu erro de rede, nós assumimos
+            // que funcionou (já que os dados estão chegando na planilha).
+            // Não vamos mais tentar ler a resposta do Google.
+            
+            // Sucesso!
+            form.reset();      // Limpa o formulário
+            closeModal();      // Fecha o modal
+            
+            // Redireciona manualmente para o WhatsApp
+            window.open(WHATSAPP_URL, '_blank');
+            
 
         } catch (error) {
             // Erro de rede/conexão
@@ -166,7 +168,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     /* --- 3. SCRIPT DA MÁSCARA DE TELEFONE --- */
     
-    // Seleciona o campo de telefone AQUI DE DENTRO
+    // Seleciona o campo de telefone
     const phoneInput = document.querySelector('input[type="tel"]');
 
     if (phoneInput) {
