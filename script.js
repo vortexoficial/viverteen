@@ -111,8 +111,7 @@ document.addEventListener('DOMContentLoaded', () => {
     // URL da sua API do Google
     const GOOGLE_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbxsdvMeqefKmvR_affcz73uwpX_S5rrzRQwXIqyJdpjThTVmtB9Z6I7-eDP9oMNYtpvVg/exec";
     
-    // URL do WhatsApp para redirecionar
-    const WHATSAPP_URL = "https://wa.me/5513988010886?text=Ol%C3%A1%2C%20quero%20ser%20avisado%20sobre%20o%20pr%C3%B3ximo%20evento%21";
+    // <<<< MUDANÇA: A URL do WhatsApp foi removida daqui
 
     // Seleciona os elementos do formulário
     const form = document.getElementById('lead-form');
@@ -142,16 +141,25 @@ document.addEventListener('DOMContentLoaded', () => {
             });
 
             // <<<<< MUDANÇA IMPORTANTE AQUI >>>>>
-            // Se o 'fetch' acima não deu erro de rede, nós assumimos
-            // que funcionou (já que os dados estão chegando na planilha).
-            // Não vamos mais tentar ler a resposta do Google.
+
+            // 1. Pega o nome direto do formulário
+            const nome = formData.get('Nome');
             
+            // 2. Cria a nova mensagem personalizada
+            const baseMessage = `Olá, me nome é ${nome} e gostaria de ser avisado(a) sobre o próximo evento!`;
+            
+            // 3. Codifica a mensagem para uma URL (corrige o "Olá%C")
+            const encodedMessage = encodeURIComponent(baseMessage);
+            
+            // 4. Monta a URL final e dinâmica
+            const dynamicWhatsappUrl = `https://wa.me/5513988010886?text=${encodedMessage}`;
+
             // Sucesso!
             form.reset();      // Limpa o formulário
             closeModal();      // Fecha o modal
             
-            // Redireciona manualmente para o WhatsApp
-            window.open(WHATSAPP_URL, '_blank');
+            // 5. Redireciona para a URL recém-criada
+            window.open(dynamicWhatsappUrl, '_blank');
             
 
         } catch (error) {
